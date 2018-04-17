@@ -43,12 +43,15 @@ public:
 	void SetTurretReference(UTankTurret* TurretToSet);
 	
 	//launch speed tool tips
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000; //1000 m/s
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 4000.0; //1000 m/s
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	//local barrel reference for spawning projectile
 	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSecond = 3;
+	double LastFireTime = 0;
 };

@@ -11,6 +11,7 @@ AProjectile::AProjectile()
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
 	ProjectileMovement->bAutoActivate = false;
+	//ProjectileMovement->ProjectileGravityScale = 0.0;
 }
 
 // Called when the game starts or when spawned
@@ -28,7 +29,7 @@ void AProjectile::Tick(float DeltaTime)
 }
 
 void AProjectile::LaunchProjectile(float Speed) {
-	UE_LOG(LogTemp, Warning, TEXT("fire speed: %f"), Speed);
+	//UE_LOG(LogTemp, Warning, TEXT("fire speed: %f"), Speed);
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
 	ProjectileMovement->Activate();
 }

@@ -65,9 +65,12 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	
 	if (bHaveAimSolution) {
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		
+
 
 		if (!isAI) {
+			//UE_LOG(LogTemp, Warning, TEXT("aiming at %s"),  *HitLocation.ToString());
+			/*
+			draw line on the aiming point
 			FVector linePos = FVector(HitLocation.X, HitLocation.Y, HitLocation.Z + 1000.f);
 			UKismetSystemLibrary::DrawDebugLine(
 				GetWorld(),
@@ -76,11 +79,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 				FColor(255, 0, 0),
 				0.f, 50.f
 			);
+			*/
+
 			//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *TankName, *AimDirection.ToString());
-			MoveBarrelTowards(AimDirection);
+			
 		}
 		
-		
+		MoveBarrelTowards(AimDirection);
 		//.Contains(TEXT("AI"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 
 		//UE_LOG(LogTemp, Warning, TEXT("%f"), *checked );
