@@ -47,6 +47,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
 
+	/*
+	TArray<AActor*> ActorIgnoreList;
+	ActorIgnoreList.Add(GetOwner());
+	*/
+
 	//calculate the OutLaunchVelocity
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(
 		this,
@@ -58,6 +63,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		0,
 		0
 		,ESuggestProjVelocityTraceOption::DoNotTrace
+		//,FCollisionResponseParams::DefaultResponseParam,
+		//,ActorIgnoreList
 	);
 
 	auto TankName = GetOwner()->GetName();
@@ -69,8 +76,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 		if (!isAI) {
 			//UE_LOG(LogTemp, Warning, TEXT("aiming at %s"),  *HitLocation.ToString());
-			/*
-			draw line on the aiming point
+			
+			//draw line on the aiming point
 			FVector linePos = FVector(HitLocation.X, HitLocation.Y, HitLocation.Z + 1000.f);
 			UKismetSystemLibrary::DrawDebugLine(
 				GetWorld(),
@@ -79,16 +86,19 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 				FColor(255, 0, 0),
 				0.f, 50.f
 			);
-			*/
+			
 
 			//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *TankName, *AimDirection.ToString());
 			
+		}
+		else {
+			//UE_LOG(LogTemp, Warning, TEXT("B:%s || S: %s"), *BarrelLocation, *StartLocation.ToString());
 		}
 		
 		MoveBarrelTowards(AimDirection);
 		//.Contains(TEXT("AI"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 
-		//UE_LOG(LogTemp, Warning, TEXT("%f"), *checked );
+
 		
 
 	} else {
