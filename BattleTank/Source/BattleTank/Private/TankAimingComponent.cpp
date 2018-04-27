@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
+#include "Tank.h"
 
 
 // Sets default values for this component's properties
@@ -69,7 +70,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 	auto TankName = GetOwner()->GetName();
 	bool isAI = TankName.Contains(TEXT("AI"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
-	
+	auto Owner = Cast<ATank>(GetOwner());
+	isAI = Owner->GetAI();
 	if (bHaveAimSolution) {
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 

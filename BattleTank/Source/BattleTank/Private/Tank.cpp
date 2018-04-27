@@ -115,7 +115,7 @@ void ATank::DestroyActor()
 {
 	int32 ProjectileOnScene = ProjectileActors.Num();
 	if (ProjectileOnScene <= 0) return;
-	TArray<AProjectile*> ProjectileActors2;
+	ProjectileActors2 = {};
 	for (int32 b = 0; b < ProjectileOnScene; b++)
 	{
 		AProjectile* t = ProjectileActors[b];
@@ -123,8 +123,7 @@ void ATank::DestroyActor()
 		if (!t->IsValidLowLevel()) continue;
 		if (t->GetActorLocation().Z < -100.f ) {
 			t->Destroy();
-		}
-		else {
+		} else {
 			ProjectileActors2.Add(t);
 		}
 		//UE_LOG(LogTemp, Warning, TEXT("name: %s"), *ProjectileActors[b]->GetName());
@@ -133,4 +132,13 @@ void ATank::DestroyActor()
 	};
 	ProjectileActors = ProjectileActors2;
 	UE_LOG(LogTemp, Warning, TEXT("Array: %i"), ProjectileActors.Num());
+}
+
+void ATank::IsAI()
+{
+	hasAI = true;
+}
+bool ATank::GetAI()
+{
+	return hasAI;
 }

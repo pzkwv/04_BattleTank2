@@ -69,8 +69,12 @@ public:
 	double LastFireTime = 0;
 
 	TArray<AProjectile*> ProjectileActors;
-	
+	TArray<AProjectile*> ProjectileActors2;
+
+	bool hasAI = false;
 
 	void DestroyActor();
 	void CheckSpawnActor();
+	void IsAI();
+	bool GetAI();
 };
