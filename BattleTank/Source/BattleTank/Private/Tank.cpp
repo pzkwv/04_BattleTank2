@@ -131,7 +131,7 @@ void ATank::DestroyActor()
 		//UE_LOG(LogTemp, Warning, TEXT("name:") );
 	};
 	ProjectileActors = ProjectileActors2;
-	UE_LOG(LogTemp, Warning, TEXT("Array: %i"), ProjectileActors.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("Array: %i"), ProjectileActors.Num());
 }
 
 void ATank::IsAI()
